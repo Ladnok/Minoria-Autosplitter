@@ -6,5 +6,6 @@ Features:
 - Split
 - Stop
 - Reset
+- Load time remover
 
 In this repository there's also a CE table with lots of information including player's health, picked up items, bosses, etc.
