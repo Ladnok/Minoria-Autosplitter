@@ -10,9 +10,6 @@ state("Minoria", "v1.0")
 	// Checks if the file goes from already in use to a clean start
 	byte NewGame: "mono.dll", 0x264110, 0x1460, 0x118, 0xB0, 0x84;
 
-	// Checks which file is selected on title screen(prevent false resets)
-	int FileSelected: "mono.dll", 0x264110, 0x1460, 0x118, 0x124;
-
 	// Checks if a file is seleted on title screen
 	byte IsSelected: "mono.dll", 0x264110, 0x1460, 0x118, 0x121;
 
@@ -81,21 +78,21 @@ startup
 
 	// Main Splits
 	settings.Add("lissette", true, "Lissette");
-	settings.Add("cathedralkey", true, "Cathedral Key");
+	settings.Add("churchkey2", true, "Cathedral Key");
 	settings.Add("devoir", true, "Devoir");
-	settings.Add("chargedAttack", true, "Charged Thrust");
+	settings.Add("itemthrust", true, "Charged Thrust");
 	settings.Add("enterGarden", true, "Garden");
-	settings.Add("royalkey", true, "Royal Key");
+	settings.Add("gardenkey", true, "Royal Key");
 	settings.Add("mist", true, "(Mist fragments)");
-	settings.Add("saora", true, "Saora");//NEED SKIP
+	settings.Add("saora", true, "Saora");
 	settings.Add("catacombs", true, "Catacombs");
-	settings.Add("upperDash", true, "Upper Dash");
+	settings.Add("itemuppercut", true, "Upper Dash");
 	settings.Add("code", true, "Catacombs Code");
-	settings.Add("frikka", true, "Frikka");//NEED FIX
+	settings.Add("frikka", true, "Frikka");
 	settings.Add("gridelin", true, "Castle Mini-boss");
-	settings.Add("warpDash", true, "Warp Dash");
-	settings.Add("lust", true, "Lust");///NEED SKIP
-	settings.Add("parushee", true, "Parushee");//NEED SKIP
+	settings.Add("itemdash", true, "Warp Dash");
+	settings.Add("lust", true, "Lust");
+	settings.Add("parushee", true, "Parushee");
 	settings.Add("ending", true, "Ending");
 
 	// Garden Mist Fragments
@@ -105,10 +102,10 @@ startup
 	settings.Add("fragment4", true, "Fragment 4", "mist");
 
 	// Catacomb Keys
-	settings.Add("key1", true, "B1F Key", "catacombs");
-	settings.Add("key2", true, "B2F Key", "catacombs");
-	settings.Add("key3", true, "B3F Key", "catacombs");
-	settings.Add("key5", true, "B5F Key", "catacombs");
+	settings.Add("cellarkey1f", true, "B1F Key", "catacombs");
+	settings.Add("cellarkey2f", true, "B2F Key", "catacombs");
+	settings.Add("cellarkey3f", true, "B3F Key", "catacombs");
+	settings.Add("cellarkey5f", true, "B5F Key", "catacombs");
 
 	// ToolTips
 	settings.SetToolTip("saora", "If checked it will split upon defeating Saora or performing the skip");
@@ -156,6 +153,12 @@ init
 	// Keeps track of how many garden crystals the player has destroyed
 	vars.GardenCrystalsDone = 0;
 
+	// Hashset to know on what items to split on
+	vars.Items = new HashSet<string>() {
+		/*Keys*/"churchkey2", "gardenkey", "cellarkey1f", "cellarkey2f", "cellarkey3f", "cellarkey5f",
+		/*Upgrades*/"itemthrust", "itemuppercut", "itemdash"
+	};
+
 	// Hashset to hold the name of the Items collected
 	vars.Inventory = new HashSet<string>();
 
@@ -191,9 +194,10 @@ update
 	else
 	{
 
+		int i;
 		if (current.Inventorysize > old.Inventorysize) {
 
-			for (int i = 0; i < current.Inventorysize; i++) {
+			for (i = 0; i < current.Inventorysize; i++) {
 				
 				vars.ItemName = new StringWatcher(new DeepPointer("UnityPlayer.dll", 0x0143D440, 0x10, 0x248, 0x8, 0xB8, 0x8, 0x10, 0x10, 0x20 + i * 0x8, 0x10, 0x28, 0x26), 128);
 
@@ -202,7 +206,6 @@ update
 				if (!vars.Inventory.Contains(vars.ItemName.Current))
 				{
 
-					//print("New Item added");
 					vars.NewItem = true;
 					vars.Inventory.Add(vars.ItemName.Current);
 				}
@@ -222,7 +225,7 @@ start
 reset
 {
 
-    return (current.FileSelected == old.FileSelected && current.NewGame == 1 && old.NewGame == 0);
+    return (current.IsSelected == old.IsSelected && current.NewGame == 1 && old.NewGame == 0);
 }
 
 
@@ -478,124 +481,26 @@ split
 	}
 	// BOSS SKIPS END
 
-	// INVENTORY
+	// Items
 	// Check if the collected item is the correct one
 	if(vars.NewItem == true)
 	{
 
-		// Keys
-		if (vars.Inventory.Contains("churchkey2"))
-		{
+		foreach (string Item in vars.Items) {
 
-			if (!vars.Splits.Contains("Cathedral Key"))
+			if (vars.Inventory.Contains(Item))
 			{
 
-				vars.Splits.Add("Cathedral Key");
-				vars.NewItem = false;
-				return settings["cathedralkey"];
+				if (!vars.Splits.Contains(Item))
+				{
+
+					vars.Splits.Add(Item);
+					return settings[Item];
+				}
 			}
 		}
-
-		if (vars.Inventory.Contains("gardenkey"))
-		{
-
-			if (!vars.Splits.Contains("Royal Key"))
-			{
-
-				vars.Splits.Add("Royal Key");
-				vars.NewItem = false;
-				return settings["royalkey"];
-			}
-		}
-
-		if (vars.Inventory.Contains("cellarkey1f"))
-		{
-
-			if (!vars.Splits.Contains("B1F Key"))
-			{
-
-				vars.Splits.Add("B1F Key");
-				vars.NewItem = false;
-				return settings["key1"];
-			}
-		}
-
-		if (vars.Inventory.Contains("cellarkey2f"))
-		{
-
-			if (!vars.Splits.Contains("B2F Key"))
-			{
-
-				vars.Splits.Add("B2F Key");
-				vars.NewItem = false;
-				return settings["key2"];
-			}
-		}
-
-		if (vars.Inventory.Contains("cellarkey3f"))
-		{
-
-			if (!vars.Splits.Contains("B3F Key"))
-			{
-
-				vars.Splits.Add("B3F Key");
-				vars.NewItem = false;
-				return settings["key3"];
-			}
-		}
-
-		if (vars.Inventory.Contains("cellarkey5f"))
-		{
-
-			if (!vars.Splits.Contains("B4F Key"))
-			{
-
-				vars.Splits.Add("B4F Key");
-				vars.NewItem = false;
-				return settings["key4"];
-			}
-		}
-
-		// Movement upgrades
-		if (vars.Inventory.Contains("itemthrust"))
-		{
-
-			if (!vars.Splits.Contains("Charged Attack"))
-			{
-
-				vars.Splits.Add("Charged Attack");
-				vars.NewItem = false;
-				return settings["chargedAttack"];
-			}
-		}
-
-		if (vars.Inventory.Contains("itemuppercut"))
-		{
-
-			if (!vars.Splits.Contains("Upper Dash"))
-			{
-
-				vars.Splits.Add("Upper Dash");
-				vars.NewItem = false;
-				return settings["upperDash"];
-			}
-		}
-
-		if (vars.Inventory.Contains("itemdash"))
-		{
-
-			if (!vars.Splits.Contains("Warp Dash"))
-			{
-
-				vars.Splits.Add("Warp Dash");
-				vars.NewItem = false;
-				return settings["warpDash"];
-			}
-		}
-
-		// Reset variable so it only checks again when a new item is picked up
+		
 		vars.NewItem = false;
 	}
-	// INVENTORY END
 	// MISC END
 }
