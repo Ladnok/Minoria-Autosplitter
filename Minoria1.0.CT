@@ -92,7 +92,7 @@
                   <Keys>
                     <Key>79</Key>
                   </Keys>
-                  <Value>50</Value>
+                  <Value>1</Value>
                   <ID>1</ID>
                 </Hotkey>
                 <Hotkey>
@@ -1788,6 +1788,308 @@
                 <Offset>A0</Offset>
                 <Offset>D0</Offset>
                 <Offset>128</Offset>
+              </Offsets>
+            </CheatEntry>
+          </CheatEntries>
+        </CheatEntry>
+        <CheatEntry>
+          <ID>292</ID>
+          <Description>"FlagsPtr"</Description>
+          <Options moManualExpandCollapse="1"/>
+          <ShowAsSigned>0</ShowAsSigned>
+          <VariableType>8 Bytes</VariableType>
+          <Address>"mono.dll"+267758</Address>
+          <Offsets>
+            <Offset>10</Offset>
+            <Offset>0</Offset>
+            <Offset>18</Offset>
+            <Offset>8</Offset>
+            <Offset>F8</Offset>
+            <Offset>490</Offset>
+            <Offset>3F0</Offset>
+            <Offset>8</Offset>
+            <Offset>1D0</Offset>
+            <Offset>10</Offset>
+          </Offsets>
+          <CheatEntries>
+            <CheatEntry>
+              <ID>293</ID>
+              <Description>"ArraySize"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>18</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>294</ID>
+              <Description>"Lissette"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>15C</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>295</ID>
+              <Description>"Devoir"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>168</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>301</ID>
+              <Description>"Garden"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>1A8</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>300</ID>
+              <Description>"Mist fragment 1"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>27C</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>304</ID>
+              <Description>"Mist fragment 2"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>288</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>303</ID>
+              <Description>"Mist fragment 3"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>280</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>302</ID>
+              <Description>"Mist fragment 4"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>284</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>306</ID>
+              <Description>"Saora"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>1D4</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>305</ID>
+              <Description>"Catacombs code"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>140</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>307</ID>
+              <Description>"Frikka"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>1B8</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>308</ID>
+              <Description>"Gridelin"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>3F0</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>309</ID>
+              <Description>"Lust"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>104</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
+              </Offsets>
+            </CheatEntry>
+            <CheatEntry>
+              <ID>310</ID>
+              <Description>"Parushee"</Description>
+              <ShowAsSigned>0</ShowAsSigned>
+              <VariableType>4 Bytes</VariableType>
+              <Address>"mono.dll"+267758</Address>
+              <Offsets>
+                <Offset>464</Offset>
+                <Offset>10</Offset>
+                <Offset>0</Offset>
+                <Offset>18</Offset>
+                <Offset>8</Offset>
+                <Offset>F8</Offset>
+                <Offset>490</Offset>
+                <Offset>3F0</Offset>
+                <Offset>8</Offset>
+                <Offset>1D0</Offset>
+                <Offset>10</Offset>
               </Offsets>
             </CheatEntry>
           </CheatEntries>
@@ -6549,7 +6851,28 @@
     </Structure>
     <Structure Name="GameData.Static" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
       <Elements>
-        <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" Description="current" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="0" Vartype="Pointer" Bytesize="8" OffsetHex="00000000" Description="current" DisplayMethod="Unsigned Integer">
+          <Structure Name="GameData" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+            <Elements>
+              <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="&lt;MomoEvent&gt;k__BackingField" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="archiveData" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="32" Vartype="Pointer" Bytesize="8" OffsetHex="00000020" Description="mapDiscoveryData" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="40" Vartype="Pointer" Bytesize="8" OffsetHex="00000028" ChildStruct="String" Description="scene_name" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="48" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000030" Description="player_pos" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="60" Vartype="Float" Bytesize="4" OffsetHex="0000003C" Description="player_money" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="64" Vartype="Float" Bytesize="4" OffsetHex="00000040" Description="player_maxhp" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="68" Vartype="Float" Bytesize="4" OffsetHex="00000044" Description="player_maxsp" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="72" Vartype="Float" Bytesize="4" OffsetHex="00000048" Description="phys_defense" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="76" Vartype="Float" Bytesize="4" OffsetHex="0000004C" Description="mag_defense" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="80" Vartype="Float" Bytesize="4" OffsetHex="00000050" Description="phys_attack" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="84" Vartype="Float" Bytesize="4" OffsetHex="00000054" Description="mag_attack" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="88" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000058" Description="player_level" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="92" Vartype="4 Bytes" Bytesize="4" OffsetHex="0000005C" Description="player_xp" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="96" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000060" Description="player_maxxp" DisplayMethod="Unsigned Integer"/>
+              <Element Offset="100" Vartype="Float" Bytesize="4" OffsetHex="00000064" Description="play_time" DisplayMethod="Unsigned Integer"/>
+            </Elements>
+          </Structure>
+        </Element>
         <Element Offset="8" Vartype="Pointer" Bytesize="8" OffsetHex="00000008" Description="inventory" DisplayMethod="Unsigned Integer"/>
         <Element Offset="16" Vartype="Pointer" Bytesize="8" OffsetHex="00000010" Description="itemDatabase" DisplayMethod="Unsigned Integer"/>
         <Element Offset="24" Vartype="Pointer" Bytesize="8" OffsetHex="00000018" Description="itemShops" DisplayMethod="Unsigned Integer"/>
@@ -16610,6 +16933,30 @@
     <Structure Name="GameOverScreen.Static" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
       <Elements>
         <Element Offset="0" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000000" Description="OffsetOfInstanceIDInCPlusPlusObject" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="Length" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="20" Vartype="Unicode String" Bytesize="128" OffsetHex="00000014" Description="Value" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="Length" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="20" Vartype="Unicode String" Bytesize="128" OffsetHex="00000014" Description="Value" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="Length" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="20" Vartype="Unicode String" Bytesize="128" OffsetHex="00000014" Description="Value" DisplayMethod="Unsigned Integer"/>
+      </Elements>
+    </Structure>
+    <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
+      <Elements>
+        <Element Offset="16" Vartype="4 Bytes" Bytesize="4" OffsetHex="00000010" Description="Length" DisplayMethod="Unsigned Integer"/>
+        <Element Offset="20" Vartype="Unicode String" Bytesize="128" OffsetHex="00000014" Description="Value" DisplayMethod="Unsigned Integer"/>
       </Elements>
     </Structure>
     <Structure Name="String" AutoFill="0" AutoCreate="1" DefaultHex="0" AutoDestroy="0" DoNotSaveLocal="0" RLECompression="1" AutoCreateStructsize="4096">
