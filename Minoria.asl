@@ -86,7 +86,7 @@ startup
 	// ToolTips
 	settings.SetToolTip("109", "If checked it will split upon defeating Saora or performing the skip");
 	settings.SetToolTip("57", "If checked it will split upon defeating Lust or performing the skip");
-	settings.SetToolTip("273", "If checked it will split upon defeating Boss2 or performing the skip");
+	settings.SetToolTip("273", "If checked it will split upon defeating Parushee or performing the skip");
 	settings.SetToolTip("ending", "If checked it will split on Saint and Heretic endings");
 }
 
