@@ -2,6 +2,9 @@ state("Minoria", "v1.0")
 {
 	// Checks if the game is loading
 	byte IsLoading:	"UnityPlayer.dll", 0x1442A68, 0x18, 0xE0, 0x158, 0x38;
+
+	// Checks if the player is inGame and not on the main menu
+	byte inGame: "mono.dll", 0x264A68, 0xA0, 0xE60;
 	
 	// Checks if player is selecting brightness level at the start of a run
 	byte StartRun: "UnityPlayer.dll", 0x1442A68, 0x18, 0x160, 0x60, 0xA8, 0xD0, 0x28, 0x60;
@@ -38,36 +41,27 @@ state("Minoria", "v1.0")
 
 state("Minoria", "v1.085")
 {
-	// Checks if the game is loading
 	byte IsLoading:	"UnityPlayer.dll", 0x1442A68, 0x18, 0xE0, 0x158, 0x38;
+
+	byte inGame: "mono.dll", 0x264A68, 0xA0, 0xE60;
 	
-	// Checks if player is selecting brightness level at the start of a run
 	byte StartRun: "UnityPlayer.dll", 0x1442A68, 0x18, 0x160, 0x60, 0xA8, 0xD0, 0x28, 0x60;
 
-	// Checks if the file goes from already in use to a clean start
 	byte NewGame: "mono.dll", 0x264110, 0x1550, 0x118, 0xB0, 0x84;
 
-	// Checks if a file is seleted on title screen
 	byte IsSelected: "mono.dll", 0x264110, 0x1550, 0x118, 0x159;
 
-	// Base pointer for the flag array
 	int FlagsPtr: "mono.dll", 0x267758, 0x10, 0x1D0, 0x8, 0x3F0, 0x4A0, 0xF8, 0x8, 0x18, 0x0, 0x10;
 
-	// Player X and Y Coordinates (global, kinda, prevents false split on boss skips)
 	float PlayerXPos: "mono.dll", 0x264A68, 0xA0, 0xDC4;
 	float PlayerYPos: "mono.dll", 0x264A68, 0xA0, 0xDC8;
 
-	// Checks how many Items the player has (not equiped)
 	int Inventorysize: "UnityPlayer.dll", 0x143D440, 0x10, 0x248, 0x8, 0xB8, 0x8, 0x10, 0x18;
 
-	// Checks which dialogue option is selected
 	byte DialogueSelected: "UnityPlayer.dll", 0x1442BF8, 0x128, 0xD0, 0xA0, 0x8C;
-	// Checks the ammount of option in a dialogue (Prevent false end split)
 	byte DialogueChoices: "UnityPlayer.dll", 0x1442BF8, 0x128, 0xD0, 0xA0, 0x90;
 
-	// Boss Pointers
 	byte PoemeDead: "mono.dll", 0x2649C8, 0x100, 0x398, 0x10, 0x160, 0x80, 0x208;
-	// "BossName"MaxHp is used to prevent false splits since the pointers get reused for other common enemies randomly
 	float PoemeMaxHp: "mono.dll", 0x2649C8, 0x100, 0x398, 0x10, 0x160, 0x80, 0x144;
 
 	byte AmeliaDead: "UnityPlayer.dll", 0x13ADFE0, 0x80, 0xC0, 0x8, 0x90, 0xA0, 0x80, 0x208;
@@ -125,8 +119,6 @@ init
 	long dll_size = new System.IO.FileInfo(dll_path).Length;
  
 	print("Minoria: Version: " + dll_size.ToString());
-	
-	// Minoria: Version: 1280512  - 1.0
 
 	switch (dll_size)
 	{
@@ -217,6 +209,7 @@ update
 		}
 	}
 
+	// Check if a new item was found and get its name
 	if (current.Inventorysize > old.Inventorysize)
 	{
 		for (int i = 0; i < current.Inventorysize; i++)
@@ -233,6 +226,7 @@ update
 		}
 	}
 
+	// Check if Powmw was defeated and reset its flag if necessary
 	if (current.PoemeMaxHp == 25000 && current.PoemeDead == 1 && old.PoemeDead == 0)
 	{
 		vars.PoemeKilled = true;
@@ -242,6 +236,7 @@ update
 		vars.PoemeKilled = false;
 	}
 
+	// Check if the game has loaded a level and set checkSKips to true
 	if(vars.CheckLoaded > 0)
 	{
 		vars.CheckLoaded--;
@@ -292,7 +287,7 @@ split
 	
 	// BOSS SKIPS
 	// Check that the game has loaded a level(for example after retrying or loading a savefile) and the player is in the desired location
-	if(vars.checkSkips == true)
+	if(vars.checkSkips == true && current.inGame == 1)
 	{
 		// Saora Skip
 		if(current.PlayerXPos >= 868 && current.PlayerXPos <= 873 && current.PlayerYPos >= -8 && current.PlayerYPos <= -7)
