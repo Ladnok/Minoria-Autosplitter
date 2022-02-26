@@ -111,7 +111,7 @@ startup
 	// ToolTips
 	settings.SetToolTip("109", "If checked it will split upon defeating Saora or performing the skip");
 	settings.SetToolTip("57", "If checked it will split upon defeating Lust or performing the skip");
-	settings.SetToolTip("273", "If checked it will split upon defeating Boss2 or performing the skip");
+	settings.SetToolTip("273", "If checked it will split upon defeating Parushee or performing the skip");
 	settings.SetToolTip("ending", "If checked it will split on Saint and Heretic endings");
 }
 
@@ -148,6 +148,10 @@ init
 
 	// Once the Final boss dies there is a dialogue, this variable is to know if we are on that specific dialogue or not
 	vars.PoemeKilled = false;
+
+	//When game has loaded a level, check if the player has performed a skip
+	vars.checkSkips = false;
+	vars.CheckLoaded = 0;
 
 	// Tracks if the player has collected a new item
 	vars.NewItem = false;
@@ -191,6 +195,8 @@ update
 		vars.Splits.Clear();
 		vars.Inventory.Clear();
 		vars.PoemeKilled = false;
+		vars.checkSkips = false;
+		vars.CheckLoaded = 0;
 	}
 
 	// Initialize flags when the flags pointer gets initialized/changes, or we load up LiveSplit while in-game
@@ -235,6 +241,21 @@ update
 	{
 		vars.PoemeKilled = false;
 	}
+
+	if(vars.CheckLoaded > 0)
+	{
+		vars.CheckLoaded--;
+	}
+	else
+	{
+		vars.checkSkips = false;
+		if(old.IsLoading == 1 && current.IsLoading == 0)
+		{
+			vars.checkSkips = true;
+			vars.CheckLoaded = 30;
+		}
+	}
+
 	// Update flags
 	vars.Flags.UpdateAll(game);
 }
@@ -271,7 +292,7 @@ split
 	
 	// BOSS SKIPS
 	// Check that the game has loaded a level(for example after retrying or loading a savefile) and the player is in the desired location
-	if(old.IsLoading == 1 && current.IsLoading == 0)
+	if(vars.checkSkips == true)
 	{
 		// Saora Skip
 		if(current.PlayerXPos >= 868 && current.PlayerXPos <= 873 && current.PlayerYPos >= -8 && current.PlayerYPos <= -7)
