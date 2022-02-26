@@ -324,6 +324,16 @@ split
 			vars.Splits.Add("273");
 			return settings["273"];
 		}
+		else if(current.PlayerXPos >= -105 && current.PlayerXPos <= -102 && current.PlayerYPos >= -44 && current.PlayerYPos <= -43)
+		{
+			if (vars.Splits.Contains("273"))
+			{
+				return false;
+			}
+
+			vars.Splits.Add("273");
+			return settings["273"];
+		}
 	}
 
 	// ENDINGS
