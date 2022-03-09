@@ -107,6 +107,21 @@ startup
 	settings.SetToolTip("57", "If checked it will split upon defeating Lust or performing the skip");
 	settings.SetToolTip("273", "If checked it will split upon defeating Parushee or performing the skip");
 	settings.SetToolTip("ending", "If checked it will split on Saint and Heretic endings");
+	
+	//timing method reminder from Amnesia TDD autosplitter, all credits to those guys (and ROR2 which is where I got this from)
+	if (timer.CurrentTimingMethod == TimingMethod.GameTime) {
+        	var timingMessage = MessageBox.Show (
+          		"Minoria uses RTA (time with loads) as timing method.\n"+
+          		"LiveSplit is currently set to show IGT (time without loads).\n"+
+          		"Would you like the timing method to be set to RTA for you?",
+         		"Minoria Autosplitter | LiveSplit",
+         		MessageBoxButtons.YesNo,MessageBoxIcon.Question
+       		);
+		
+        	if (timingMessage == DialogResult.Yes) {
+			timer.CurrentTimingMethod = TimingMethod.RealTime;
+		}
+	}
 }
 
 
@@ -226,12 +241,12 @@ update
 		}
 	}
 
-	// Check if Powmw was defeated and reset its flag if necessary
+	// Check if Poeme was defeated and reset its flag if necessary
 	if (current.PoemeMaxHp == 25000 && current.PoemeDead == 1 && old.PoemeDead == 0)
 	{
 		vars.PoemeKilled = true;
 	}
-	else if (current.IsLoading == 1)
+	else if (current.IsLoading == 1 || current.inGame == 0)
 	{
 		vars.PoemeKilled = false;
 	}
