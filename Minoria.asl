@@ -1,5 +1,5 @@
-state("Minoria", "v1.0")
-{
+state("Minoria", "v1.0") {
+
 	// Checks if the game is loading
 	byte IsLoading:	"UnityPlayer.dll", 0x1442A68, 0x18, 0xE0, 0x158, 0x38;
 
@@ -39,8 +39,8 @@ state("Minoria", "v1.0")
 	float AmeliaMaxHp: "UnityPlayer.dll", 0x13ADFE0, 0x80, 0xC0, 0x8, 0x90, 0xA0, 0x80, 0x144;
 }
 
-state("Minoria", "v1.085")
-{
+state("Minoria", "v1.085") {
+
 	byte IsLoading:	"UnityPlayer.dll", 0x1442A68, 0x18, 0xE0, 0x158, 0x38;
 
 	byte inGame: "mono.dll", 0x264A68, 0xA0, 0xE60;
@@ -69,8 +69,8 @@ state("Minoria", "v1.085")
 }
 
 
-startup
-{
+startup {
+
 	// Main Splits
 	settings.Add("79", true, "Lissette");
 	settings.Add("churchkey2", true, "Cathedral Key");
@@ -113,20 +113,20 @@ startup
         	var timingMessage = MessageBox.Show (
           		"Minoria uses RTA (time with loads) as timing method.\n"+
           		"LiveSplit is currently set to show IGT (time without loads).\n"+
-          		"Would you like the timing method to be set to RTA for you?",
+          		"Would you like the timing method to be set to RTA for you?\n"+
+				"(This only works if the timer component is set to 'Current Timing Method')",
          		"Minoria Autosplitter | LiveSplit",
-         		MessageBoxButtons.YesNo,MessageBoxIcon.Question
+         		MessageBoxButtons.YesNo
        		);
 		
-        	if (timingMessage == DialogResult.Yes) {
+        	if (timingMessage == DialogResult.Yes)
 			timer.CurrentTimingMethod = TimingMethod.RealTime;
-		}
 	}
 }
 
 
-init
-{
+init {
+
 	refreshRate = 60;
 
 	string dll_path = modules.First().FileName + "\\..\\Minoria_Data\\Managed\\Assembly-CSharp.dll";
@@ -135,8 +135,7 @@ init
  
 	print("Minoria: Version: " + dll_size.ToString());
 
-	switch (dll_size)
-	{
+	switch (dll_size) {
 		case 1280512:
 
 			version = "v1.0";
@@ -164,17 +163,13 @@ init
 	vars.NewItem = false;
 
 	// List of items to split on
-	vars.Items = new HashSet<string>()
-	{
+	vars.Items = new HashSet<string>() {
 		/*Keys*/"churchkey2", "gardenkey", "cellarkey1f", "cellarkey2f", "cellarkey3f", "cellarkey5f",
 		/*Upgrades*/"itemthrust", "itemuppercut", "itemdash"
 	};
 
 	// List of flags to split on
-	vars.FlagList = new HashSet<int>()
-	{
-		57, 72, 79, 82, 98, 102, 109, 151, 152, 153, 154, 244, 273
-	};
+	vars.FlagList = new HashSet<int>() { 57, 72, 79, 82, 98, 102, 109, 151, 152, 153, 154, 244, 273	};
 
 	// Hashset to hold the name of the Items collected
 	vars.Inventory = new HashSet<string>();
@@ -188,17 +183,16 @@ init
 }
 
 
-isLoading
-{
+isLoading {
+
 	return (current.IsLoading == 1);
 }
 
 
-update
-{
+update {
+
 	// Clear any hit splits, Items collected and other variables if timer stops
-	if (timer.CurrentPhase == TimerPhase.NotRunning)
-	{
+	if (timer.CurrentPhase == TimerPhase.NotRunning) {
 		vars.Splits.Clear();
 		vars.Inventory.Clear();
 		vars.PoemeKilled = false;
@@ -207,34 +201,25 @@ update
 	}
 
 	// Initialize flags when the flags pointer gets initialized/changes, or we load up LiveSplit while in-game
-	if(old.FlagsPtr != current.FlagsPtr || (current.FlagsPtr != 0 && vars.Flags.Count == 0))
-	{
+	if(old.FlagsPtr != current.FlagsPtr || (current.FlagsPtr != 0 && vars.Flags.Count == 0)) {
 		vars.Flags.Clear();
 
-		foreach (int i in vars.FlagList)
-		{
+		foreach (int i in vars.FlagList) {
 			if(version == "v1.0")
-			{
 				vars.Flags.Add(new MemoryWatcher<int>(new DeepPointer("mono.dll", 0x267758, 0x10, 0x1D0, 0x8, 0x3F0, 0x490, 0xF8, 0x8, 0x18, 0x0, 0x10, 0x20 + 0x4 * i)) { Name = i.ToString() });
-			}
 			else if (version == "v1.085")
-			{
 				vars.Flags.Add(new MemoryWatcher<int>(new DeepPointer("mono.dll", 0x267758, 0x10, 0x1D0, 0x8, 0x3F0, 0x4A0, 0xF8, 0x8, 0x18, 0x0, 0x10, 0x20 + 0x4 * i)) { Name = i.ToString() });
-			}
 		}
 	}
 
 	// Check if a new item was found and get its name
-	if (current.Inventorysize > old.Inventorysize)
-	{
-		for (int i = 0; i < current.Inventorysize; i++)
-		{
+	if (current.Inventorysize > old.Inventorysize) {
+		for (int i = 0; i < current.Inventorysize; i++) {
 			vars.ItemName = new StringWatcher(new DeepPointer("UnityPlayer.dll", 0x0143D440, 0x10, 0x248, 0x8, 0xB8, 0x8, 0x10, 0x10, 0x20 + i * 0x8, 0x10, 0x28, 0x26), 128);
 
 			vars.ItemName.Update(game);
 
-			if (!vars.Inventory.Contains(vars.ItemName.Current))
-			{
+			if (!vars.Inventory.Contains(vars.ItemName.Current)) {
 				vars.NewItem = true;
 				vars.Inventory.Add(vars.ItemName.Current);
 			}
@@ -243,24 +228,16 @@ update
 
 	// Check if Poeme was defeated and reset its flag if necessary
 	if (current.PoemeMaxHp == 25000 && current.PoemeDead == 1 && old.PoemeDead == 0)
-	{
 		vars.PoemeKilled = true;
-	}
 	else if (current.IsLoading == 1 || current.inGame == 0)
-	{
 		vars.PoemeKilled = false;
-	}
 
 	// Check if the game has loaded a level and set checkSKips to true
 	if(vars.CheckLoaded > 0)
-	{
 		vars.CheckLoaded--;
-	}
-	else
-	{
+	else {
 		vars.checkSkips = false;
-		if(old.IsLoading == 1 && current.IsLoading == 0)
-		{
+		if(old.IsLoading == 1 && current.IsLoading == 0) {
 			vars.checkSkips = true;
 			vars.CheckLoaded = 30;
 		}
@@ -271,29 +248,22 @@ update
 }
 
 
-start
-{
+start {
 	return (current.StartRun == 0 && old.StartRun == 1);
 }
 
 
-reset
-{
+reset {
     return (current.IsSelected == old.IsSelected && current.NewGame == 1 && old.NewGame == 0);
 }
 
 
-split
-{
+split {
 	// FLAGS
-	foreach (var watcher in vars.Flags)
-	{
-		if (watcher.Changed && watcher.Current == 1)
-		{
+	foreach (var watcher in vars.Flags) {
+		if (watcher.Changed && watcher.Current == 1) {
 			if (vars.Splits.Contains(watcher.Name))
-			{
 				return false;
-			}
 
 			vars.Splits.Add(watcher.Name);
 			return settings[watcher.Name];
@@ -302,49 +272,29 @@ split
 	
 	// BOSS SKIPS
 	// Check that the game has loaded a level(for example after retrying or loading a savefile) and the player is in the desired location
-	if(vars.checkSkips == true && current.inGame == 1)
-	{
+	if(vars.checkSkips == true && current.inGame == 1) {
 		// Saora Skip
-		if(current.PlayerXPos >= 868 && current.PlayerXPos <= 873 && current.PlayerYPos >= -8 && current.PlayerYPos <= -7)
-		{
+		if(current.PlayerXPos >= 868 && current.PlayerXPos <= 873 && current.PlayerYPos >= -8 && current.PlayerYPos <= -7) {
 			if (vars.Splits.Contains("109"))
-			{
 				return false;
-			}
 
 			vars.Splits.Add("109");
 			return settings["109"];
 		}
 
 		// Lust Skip
-		if(current.PlayerXPos >= -50 && current.PlayerXPos <= -45 && current.PlayerYPos >= 0 && current.PlayerYPos <= 1)
-		{
+		if(current.PlayerXPos >= -50 && current.PlayerXPos <= -45 && current.PlayerYPos >= 0 && current.PlayerYPos <= 1) {
 			if (vars.Splits.Contains("57"))
-			{
 				return false;
-			}
 
 			vars.Splits.Add("57");
 			return settings["57"];
 		}
 
 		// Parushee Skip
-		if(current.PlayerXPos >= 100 && current.PlayerXPos <= 105 && current.PlayerYPos >= 0 && current.PlayerYPos <= 1)
-		{
+		if((current.PlayerXPos >= 100 && current.PlayerXPos <= 105 && current.PlayerYPos >= 0 && current.PlayerYPos <= 1) || (current.PlayerXPos >= -105 && current.PlayerXPos <= -102 && current.PlayerYPos >= -44 && current.PlayerYPos <= -43)) {
 			if (vars.Splits.Contains("273"))
-			{
 				return false;
-			}
-
-			vars.Splits.Add("273");
-			return settings["273"];
-		}
-		else if(current.PlayerXPos >= -105 && current.PlayerXPos <= -102 && current.PlayerYPos >= -44 && current.PlayerYPos <= -43)
-		{
-			if (vars.Splits.Contains("273"))
-			{
-				return false;
-			}
 
 			vars.Splits.Add("273");
 			return settings["273"];
@@ -353,26 +303,19 @@ split
 
 	// ENDINGS
 	// Oversight: not resetting vars.PoemeDead value if player restarts the fight after defeating Poeme
-	if (vars.PoemeKilled == true)
-	{
-		if (old.DialogueSelected == 0 && current.DialogueSelected == 0 && current.DialogueChoices == 1 && old.DialogueChoices == 2)
-		{
+	if (vars.PoemeKilled == true) {
+		if (old.DialogueSelected == 0 && current.DialogueSelected == 0 && current.DialogueChoices == 1 && old.DialogueChoices == 2) {
 			if (vars.Splits.Contains("Ending"))
-			{
 				return false;
-			}
 
 			vars.Splits.Add("Ending");
 			return settings["ending"];
 		}
 	}
 
-	if (current.AmeliaMaxHp == 13000 && current.AmeliaDead == 1 && old.AmeliaDead == 0)
-	{
+	if (current.AmeliaMaxHp == 13000 && current.AmeliaDead == 1 && old.AmeliaDead == 0) {
 		if (vars.Splits.Contains("Ending"))
-		{
 			return false;
-		}
 
 		vars.Splits.Add("Ending");
 		return settings["ending"];
@@ -380,12 +323,9 @@ split
 
 	// ITEMS
 	// Check if the collected item is the correct one
-	if(vars.NewItem == true)
-	{
-		foreach (string Item in vars.Items)
-		{
-			if (vars.Inventory.Contains(Item) && !vars.Splits.Contains(Item))
-			{
+	if(vars.NewItem == true) {
+		foreach (string Item in vars.Items) {
+			if (vars.Inventory.Contains(Item) && !vars.Splits.Contains(Item)) {
 				print("New item: " + Item);
 				vars.Splits.Add(Item);
 				return settings[Item];
