@@ -2,11 +2,11 @@
 Autosplitter using the ASL language for the game Minoria
 
 Features:
-- Start
-- Split
-- Stop
-- Reset
-- Load time remover
+
+Automatically tracks the start, end, and reset to runs.
+Split customization. Perform splits on boss kills/skips and other events
+Load removal
+Supports versions 1.0 and 1.085
 
 In this repository there's also a CE table with lots of information including player's health, picked up items, bosses, etc.
 
